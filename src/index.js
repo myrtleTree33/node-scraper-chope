@@ -1,8 +1,10 @@
+import { scrapeOffers, scrapeEntry } from './lib/fetcher';
 
-export default function app() {
-    //begin writing your code here
-}
+(async () => {
+  const results = await scrapeOffers({ page: 1 });
+  console.log(results);
+})();
 
-if (require.main === module) {
-    app();
-}
+const ChopeScraper = { scrapeOffers, scrapeEntry };
+
+export default ChopeScraper;
