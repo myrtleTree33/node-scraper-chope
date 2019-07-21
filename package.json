@@ -1,5 +1,5 @@
 {
-  "name": "node-scraper-burpple",
+  "name": "node-scraper-chope",
   "version": "0.1.0",
   "description": "Scraper for https://chope.co",
   "main": "dist/index.js",
