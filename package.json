@@ -1,5 +1,5 @@
 {
-  "name": "node-es6-starter",
+  "name": "node-scraper-burpple",
   "version": "0.1.0",
   "description": "Scraper for https://chope.co",
   "main": "dist/index.js",
