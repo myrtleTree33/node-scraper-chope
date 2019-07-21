@@ -118,6 +118,7 @@ const scrapeDetails = async link => {
     Array.isArray(maxPax) && maxPax.length > 0 ? parseInt(maxPax[0], 10) : null;
 
   const offers = await parseOffers($);
+  const availableOffers = offers.filter(offer => offer.isAvailable);
 
   let loc = null;
   try {
@@ -125,7 +126,7 @@ const scrapeDetails = async link => {
       'body > section > div > div.product-con-left.mt-10.tablet-mt-20.relative > script:nth-child(8)'
     ).get()[0].children[0].data;
     loc = loc.match(/LatLng\((.*)\)/)[1].split(', ');
-    loc = [loc[1], loc[0]];
+    loc = [parseFloat(loc[1], 10), parseFloat(loc[0], 10)];
   } catch (e) {}
 
   return {
@@ -133,9 +134,10 @@ const scrapeDetails = async link => {
     tags,
     images,
     loc,
-    minPax: maxPax,
+    maxPax,
     validityDays: daysExpiry,
-    offers
+    offers,
+    availableOffers
   };
 };
 
