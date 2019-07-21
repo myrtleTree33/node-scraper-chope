@@ -23,13 +23,13 @@ const parseOffers = $ => {
         }
 
         const dayMap = {
-          SUN: 0,
-          MON: 1,
-          TUE: 2,
-          WED: 3,
-          THU: 4,
-          FRI: 5,
-          SAT: 6
+          MON: 0,
+          TUE: 1,
+          WED: 2,
+          THU: 3,
+          FRI: 4,
+          SAT: 5,
+          SUN: 6
         };
 
         return dayMap[day[1]];
@@ -42,10 +42,10 @@ const parseOffers = $ => {
       dayEnd = resolveDay(dayEnd) || 6;
 
       let timeStart = str.match(/([0-9]{2}:[0-9]{2})(am|pm)-/);
-      timeStart = timeStart ? timeStart[1] + timeStart[2] : null;
+      timeStart = timeStart ? timeStart[1] + timeStart[2] : '12:00am';
 
       let timeEnd = str.match(/-([0-9]{2}:[0-9]{2})(am|pm)/);
-      timeEnd = timeEnd ? timeEnd[1] + timeEnd[2] : null;
+      timeEnd = timeEnd ? timeEnd[1] + timeEnd[2] : '11:59pm';
 
       return {
         dayStart,
@@ -65,6 +65,8 @@ const parseOffers = $ => {
 const scrapeDetails = async link => {
   const res = await Axios.get(link);
   const $ = Cheerio.load(res.data);
+
+  const id = link.match(/products\/(.*)/)[1];
 
   let address = $('#about > div > ul > li:nth-child(2) > div > div > p').html();
   address = address.replace(/<br>/g, ', ');
@@ -137,6 +139,7 @@ const scrapeDetails = async link => {
   } catch (e) {}
 
   return {
+    id,
     address,
     tags,
     images,
@@ -147,7 +150,8 @@ const scrapeDetails = async link => {
     maxPrice,
     maxDiscount,
     offers,
-    availableOffers
+    availableOffers,
+    tos
   };
 };
 
