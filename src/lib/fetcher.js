@@ -120,6 +120,10 @@ const scrapeDetails = async link => {
   const offers = await parseOffers($);
   const availableOffers = offers.filter(offer => offer.isAvailable);
 
+  const offerPrices = availableOffers.map(offer => offer.offerPrice);
+  const minPrice = Math.min(...offerPrices);
+  const maxPrice = Math.max(...offerPrices);
+
   let loc = null;
   try {
     loc = $(
@@ -135,7 +139,9 @@ const scrapeDetails = async link => {
     images,
     loc,
     maxPax,
-    validityDays: daysExpiry,
+    daysExpiry,
+    minPrice,
+    maxPrice,
     offers,
     availableOffers
   };
