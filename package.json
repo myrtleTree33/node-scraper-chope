@@ -1,7 +1,7 @@
 {
   "name": "node-es6-starter",
   "version": "0.1.0",
-  "description": "Node.js ES6 starter with Babel & ESLint",
+  "description": "Scraper for https://chope.co",
   "main": "dist/index.js",
   "babel": {
     "presets": [
