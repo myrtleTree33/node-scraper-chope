@@ -124,6 +124,9 @@ const scrapeDetails = async link => {
   const minPrice = Math.min(...offerPrices);
   const maxPrice = Math.max(...offerPrices);
 
+  const percentDiscounts = availableOffers.map(offer => offer.percentOff);
+  const maxDiscount = Math.max(...percentDiscounts);
+
   let loc = null;
   try {
     loc = $(
@@ -142,6 +145,7 @@ const scrapeDetails = async link => {
     daysExpiry,
     minPrice,
     maxPrice,
+    maxDiscount,
     offers,
     availableOffers
   };
