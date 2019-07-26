@@ -19,7 +19,7 @@ const parseOffers = $ => {
 
       const resolveDay = day => {
         if (!day) {
-          return isNull;
+          return null;
         }
 
         const dayMap = {

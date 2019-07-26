@@ -1,6 +1,6 @@
 {
   "name": "node-scraper-chope",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Scraper for https://chope.co",
   "main": "dist/index.js",
   "babel": {
